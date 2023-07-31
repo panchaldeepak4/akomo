@@ -1,0 +1,206 @@
+.home_main{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home_sub{
+    width : 100%;
+    /* height : 80vh; */
+    height: 100%;
+    background: #333333;
+    display: flex;
+}
+
+.welcome_txt{
+    width : 60%;
+    height: 100%;
+    margin-top: 0rem;
+    /* background: green; */
+}
+.welcome_txt img{
+    width: 20%;
+    margin-top: 1rem;
+    margin-left: 2.5rem;
+}
+#wel_txt1{
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    /* font: normal normal 600  Work Sans; */
+    font-weight: 600;
+    color: #77E38D;
+    margin-top: 7rem;
+}
+.wel_txt2 ,.wel_txt3{
+    display: flex;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: #ffffff;   
+    /* margin-top: -1.8rem; */
+}
+.wel_txt2{
+    margin-top: -1.8rem;
+}
+.wel_txt3{
+    margin-top: -0.60rem;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 5rem;
+}
+.input1,.input2{
+    width: 35%;
+    background: #333333;
+    border: none;
+    border-bottom: 1px solid grey; 
+    color:#ffffff;
+}
+.input1{
+    background: url('../../../public/Images/envelope.png');
+    background-size: 12px; 
+    background-repeat: no-repeat;
+    background-position-x: 10px;
+}
+
+.forgot_p{
+    font-size: 0.65rem;
+    color: #77E38D;
+    /* float: right; */
+    margin-left: 58%;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+.btn button{
+    display: flex;
+    justify-content: center;
+    padding: 0.70rem 8rem;
+    background: #77E38D;
+    border: none;
+    border-radius: 8px;
+}
+.btn button:hover{
+    cursor: pointer;
+}
+
+                                      /* Second half */
+
+.welcome_pic{
+    width: 40%;
+    /* background: red; */
+    background: url('../../../public/Images/main.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    transform: scale(0.92);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap : 0.1rem;
+}
+.welcome_pic > p{
+    font-size: 0.65rem;
+    color: #ffffff;
+    line-height: 0.1rem;
+    
+}
+#welcome_pic_heading{
+    font-size: 1.75rem;
+    font: normal normal bold Urbanist;
+    font-weight: 500;
+    margin-top: 12rem;
+}
+
+@media screen and (max-width:1280px){
+    html{
+      font-size: 15px;
+    }
+    #welcome_pic_heading{
+        margin-top: -14rem;
+    }
+}
+
+@media screen and (max-width:1024px){
+    html{
+      font-size: 14px;
+    }
+    #welcome_pic_heading{
+        margin-top: -30rem;
+    }
+}
+@media screen and (max-width:912px){
+    html{
+      font-size: 14px;
+    }
+    #welcome_pic_heading{
+        margin-top: -35rem;
+    }
+}
+@media screen and (max-width:820px){
+    html{
+      font-size: 12px;
+    }
+    #welcome_pic_heading{
+        margin-top: -44rem;
+    }
+}
+@media screen and (max-width:768px){
+    html{
+      font-size: 12px;
+    }
+    #welcome_pic_heading{
+        margin-top: -48rem;
+    }
+}
+@media screen and (max-width:650px){
+    html{
+      font-size: 10px;
+    }
+    #welcome_pic_heading{
+        margin-top: -68rem;
+    }
+}
+@media screen and (max-width:540px){
+    html{
+      font-size: 8px;
+    }
+    #welcome_pic_heading{
+        margin-top: -90rem;
+    }
+}
+
+@media screen and (max-width:414px){
+    html{
+      font-size: 14px;
+    }
+    .home_sub{
+        display : flex;
+        flex-direction: column;
+    }
+    .welcome_txt{
+        width : 100%;
+    }
+    .welcome_pic{
+        width: 100%;
+        /* transform: scale(0.9); */
+        /* background: url('../../../public/Images/main.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 0 0; */
+        
+    }
+    #welcome_pic_heading{
+        margin-top: -40rem;
+    }
+}

@@ -1,0 +1,17 @@
+.prof_container{
+    position: fixed;
+    top: 6%;
+    right: 0.5%;
+    z-index: 1;
+    width: 15%;
+    height: 20vh;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.01rem;
+    border-radius: 8px;
+}
+.prof_container>p{
+    font-size: 0.85rem;
+}

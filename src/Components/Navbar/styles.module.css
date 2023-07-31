@@ -1,0 +1,122 @@
+.navbar{
+    width: 18%;
+    height: 100vh;
+    background: black;
+    /* display: flex;
+    flex-direction: column; */
+    
+}
+.user_logo{
+    display: flex;
+    justify-content: center;
+}
+.user_logo> img{
+    width: 50%;
+    margin-top: 1rem;
+}
+.user_icons{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    gap: 0.10rem;
+    
+}
+.user_dash,.user_mngmt,.master_data,.video_mngmt,.push_notif,
+.block_report{
+    display: flex;
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+    /* background: green; */
+    /* margin-top: 7rem; */
+}
+.user_dashSelected,.user_mngmtSelected,.master_dataSelected,.video_mngmtSelected,.push_notifSelected,
+.block_reportSelected{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+    background: #77e38d;
+    border-radius: 5px;
+}
+.user_dashSelected>img,.user_mngmtSelected>img,.push_notifSelected>img{
+    width:8%;
+}
+.user_dashSelected>p,.user_mngmtSelected>p,.master_dataSelected>p,.video_mngmtSelected>p,.push_notifSelected>p,
+.block_reportSelected>p{
+    margin-left: 1rem;
+}
+
+.user_dash >img,.user_mngmt>img,.master_data>img,.video_mngmt>img,
+.push_notif>img,.block_report>img{
+    width:8%;
+    height: 8%;
+    margin-top: 0.8rem;
+}
+.user_dash>p,.user_mngmt>p,.master_data>p,.video_mngmt>p,.push_notif>p,
+.block_report>p{
+    margin-left: 1rem;
+    color: white;
+}
+
+.user_dash:hover{
+    background: #77e38d;
+    border-radius: 5px;
+    /* color: black; */
+    cursor: pointer;
+   
+}
+
+.user_mngmt:hover{
+    background: #77e38d;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+.master_data:hover{
+    background: #77e38d;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.video_mngmt:hover{
+    background: #77e38d;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.push_notif:hover{
+    background: #77e38d;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.block_report:hover{
+    background: #77e38d;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.logout{
+    display: flex;
+    margin-left: 2rem;
+    margin-top: 8rem;
+    margin-right: 1rem;
+}
+.logout:hover{
+    background: #77e38d;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.logout >img{
+    width: 8%;
+    height: 8%;
+    margin-top: 1rem;
+    background: #77e38d;
+    padding: 0.2rem;
+    border-radius: 10px;
+}
+.logout >p{
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color :white;
+}

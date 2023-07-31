@@ -1,0 +1,126 @@
+
+.um_right{
+    width: 82%;
+    height: 100%;
+    /* float: right;
+    margin-top: -40rem; */
+    /* background: green; */
+}
+.header{
+    width: 100%;
+    height: 15%;
+    margin-top: 1rem;
+    background: #F6F6F6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+#um_text{
+    font-size: 1rem;
+    font-weight: 400;
+    color:#00054F;
+    margin-left: 1rem;
+    /* font-family: Plus Jakarta Sans; */
+}
+.btn{
+    display: flex;
+    gap: 1rem;
+    margin-right: 1rem;
+}
+#addUser{
+    font-size: 0.6rem;
+    color : #77e38d;
+    border-radius: 5px;
+    border : 1px solid #77e38d;
+}
+#addUser:hover{
+    cursor: pointer;
+}
+#records{
+    font-size: 0.6rem;
+    color : #77e38d;
+    border-radius: 5px;
+    border : 1px solid #77e38d;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.5rem;
+}
+#records >img{
+    width: 7%;
+}
+#filter{
+    font-size: 0.6rem;
+    color : #77e38d;
+    border-radius: 5px;
+    border : 1px solid #77e38d;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+#filter >img{
+    width: 20%;
+}
+#addUser{
+    background: #77e38d;
+    color:white;
+    padding: 0.3rem 1.5rem;
+    border : 1px solid #77e38d;
+}
+.form_main{
+    width: 100%;
+    height: 75vh;
+    /* height:100%; */
+    background: #F6F6F6;
+}
+.form_body{
+    width: 97%;
+    height: 60vh;
+    background: #ffffff;
+    /* background: green; */
+    margin-left: 1rem;
+    border-radius: 8px;
+    /* margin-right: 1rem; */
+}
+.tab{
+    /* margin-top: 1rem; */
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 8px;
+}
+.footer{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    margin-left: 15rem;
+    gap: 6rem;
+}
+.userBtn{
+    display: flex;
+    gap: 1rem;
+}
+.userPrev{
+    font-size: 0.75rem;
+    padding: 0.55rem 1rem;
+    border-radius: 15px;
+    border: none;
+    background: white;
+}
+.userNext{
+    font-size: 0.75rem;
+    padding: 0.55rem 2rem;
+    border-radius: 15px;
+    border: none;
+    background: #77e38d;
+    color: white; 
+}
+.pagination{
+    margin-left: 14rem;
+}
