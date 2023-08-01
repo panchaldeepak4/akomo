@@ -28,12 +28,12 @@
 .header_middle{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-left: 18rem;
 
 }
 .header_middle>img{
-    width:20%;
+    width:28%;
 }
 
 .header_right{

@@ -76,7 +76,7 @@
 }
 .body{
     width: 95%;
-    height: 80%;
+    height: 85%;
     background: white;
     /* background: red; */
     margin: 0 1.5rem 0 1.5rem;
@@ -118,10 +118,17 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.footer{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 0.85rem;
+    margin-left: 15rem;
+    gap: 6rem;
+}
 .userBtn{
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 }
 .userPrev{
     font-size: 0.75rem;
@@ -138,4 +145,7 @@
     background: #77e38d;
     color: white;
     margin-left: 1rem;
+}
+.pagination{
+    margin-left: 10rem;
 }

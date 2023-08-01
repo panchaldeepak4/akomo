@@ -4,7 +4,38 @@
     gap: 1rem;
     margin-left: 2rem;
     margin-top: 2rem;
+    width: 15%;
+    /* background: red; */
 }
 .radio_label{
     font-size: 0.75rem;
+    display: flex;
 }
+.radio_label.selected {
+    color: #77e38d;       /* Set the text color to green when selected */
+  }
+.radio_label input[type="radio"] {
+    display: none;
+}
+ .radio_button {
+    width: 0.65rem;
+    height: 0.65rem;
+    border: 2px solid #000000; /* Blue color - change as needed */
+    border-radius: 50%;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .radio_label input[type="radio"]:checked + .radio_button {
+    border-color: #77e38d ; /* Change border color to green when selected */
+  }
+  .radio_button_inner{
+    width: 0.25rem;
+    height: 0.25rem;
+    background: #000000;
+    border-radius: 100%;
+  }
+  .radio_label input[type="radio"]:checked + .radio_button_inner {
+    background: #77e38d ; /* Change border color to green when selected */
+  }

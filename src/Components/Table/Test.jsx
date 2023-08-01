@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { Table, Checkbox } from 'antd';
 import CustomToggleSwitch from '../ToggleButton/CustomToggleSwitch'
 
+
+const Test = ({userPost1}) => {
+
 const columns = [
   {
     title: <Checkbox />,
@@ -18,26 +21,30 @@ const columns = [
     { title: 'Status', dataIndex: 'column7', key: 'column7' },
   ];
 
-  const data = [
-    {
-      key: '1',
-      column1: (<div><img src='Images/addicon.png' alt='missing'/></div>),
-      column2: 'Data 2',
-      column3: 'Data 3',
+  
+  const data = userPost1.length > 0 ? (
+    
+    userPost1.map((postData)=>({
+      key: postData._id,
+      column1: (<div><img src={postData.url} alt='missing'/></div>),
+      column2: (<div style={{width:"10rem"}}>{postData.description}</div>),
+      column3: postData.location,
       column4: 'Data 4',
-      column5: 'Data 5',
+      column5: postData.tags,
       column6: (<div style={{display:"flex",gap:"0.5rem",lineHeight:"0.8rem",fontSize:"0.75rem"}}>
-      <Link to='/userManagement/videos' style={{color:"#0C1C36",borderBottom:"1px solid #0C1C36"}}>Edit</Link>
-      <Link to='/userManagement/uploadVideo' style={{color:"#0C1C36",borderBottom:"1px solid #0C1C36"}}>Delete</Link>
+      <Link to='' style={{color:"#0C1C36",borderBottom:"1px solid #0C1C36"}}>Edit</Link>
+      <Link to='' style={{color:"#0C1C36",borderBottom:"1px solid #0C1C36"}}>Delete</Link>
       <Link to='' style={{color:"#77e38d",borderBottom:"1px solid #77e38d"}}>View Detail</Link>
       </div>),
       column7: <CustomToggleSwitch />,
       // column7: <CustomToggleSwitch userId={userData._id} />,
-    },
-    // Add more data objects if you have multiple rows
-  ];
+    
+    }))
+    ) : (
+      []
+    );
 
-const Test = () => {
+
   return (
     <>
      <Table columns={columns} dataSource={data} pagination={false}/>

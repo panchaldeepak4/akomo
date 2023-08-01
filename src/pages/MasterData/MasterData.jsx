@@ -58,14 +58,15 @@ const MasterData = () => {
               </div>
             </div>
 
-            { showAddCategoryModal && <Modal setShowAddCategoryModal={setShowAddCategoryModal}/>} 
+            { showAddCategoryModal && <Modal setShowAddCategoryModal={setShowAddCategoryModal}
+            fetchData={fetchData}/>} 
         
 
             <div className={styles.body}>
                 <p>Videos</p>                     {/* Videos is hidden here  */}  
                 <div className={styles.white_body}>
                     <div className={styles.table}>
-                      <MasterDataTest  user1={user1} />        {/*   Table as component used here */}
+                      <MasterDataTest  user1={user1} fetchData={fetchData}/>        {/*   Table as component used here */}
                     </div>   
                 </div>
             

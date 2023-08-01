@@ -2,10 +2,12 @@ import React,{ useState } from 'react'
 import { Table, Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
 import EditCategoryModal from '../EditCategoryModal/EditCategoryModal';
+import { message } from 'antd';
+import { userRequest } from '../RequestMethod';
 
 
 
-const MasterDataTest = ({ user1}) => {
+const MasterDataTest = ({ user1,fetchData}) => {
 
 
 
@@ -17,6 +19,29 @@ const editCategory = (userData)=>{
     setShowEditCategoryModal(true);
     setEditingData(userData);
   }
+///////////////////////////////////////////////////////////////////////////////////////////
+
+const [deletingData, setDeletingData] = useState('');
+
+let datatoDelete = JSON.stringify({
+  "categoryId" : deletingData._id,
+  "categoryName": deletingData.categoryName,
+  "deleted" : true
+});
+
+const deleteCategory = async (userData) => {
+   setDeletingData(userData)
+  //  e.preventDefault();
+  await userRequest.put('/api/category/updateCategory',datatoDelete)
+    .then(() => {
+      message.success("Category deleted successfully"); 
+      fetchData();
+    })
+    .catch((err) => {
+      const errorMessage = err.response?.data?.message || "An error occurred";
+      message.error(errorMessage);
+    });
+};
 
  
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -69,7 +94,8 @@ const columns = [
       column4:   (<div style={{display:"flex",alignItems:"center",gap:"0.5rem",lineHeight:"0.8rem",fontSize:"0.75rem"}}>
       <Link to='' style={{color:"#77e38d",borderBottom:"1px solid #77e38d"}}
       onClick={()=>editCategory(userData)}>Edit category name</Link>
-      <p style={{color:"#D20815",borderBottom:"1px solid #D20815"}}>Delete</p>
+      <p style={{color:"#D20815",borderBottom:"1px solid #D20815",cursor:"pointer" }}
+      onClick={()=>deleteCategory(userData)}>Delete</p>
     </div>
   )
       
@@ -83,7 +109,7 @@ const columns = [
     <>
     <Table columns={columns} dataSource={data} pagination={false} />
     { showEditCategoryModal && <EditCategoryModal setShowEditCategoryModal={setShowEditCategoryModal} 
-    editingData={editingData}/>} 
+    editingData={editingData} fetchData={fetchData}/>} 
     
     </>
   )

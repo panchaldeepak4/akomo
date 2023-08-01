@@ -5,17 +5,29 @@ import { message, Upload } from 'antd';
 
 const { Dragger } = Upload;
 
+// Helper function to encode credentials to Base64
+const encodeCredentials = (username, password) => {
+  const credentials = `${username}:${password}`;
+  const encodedCredentials = btoa(credentials);
+  return `Basic ${encodedCredentials}`;
+};
+
+const UploadThumbnail = ({setThumbnailURL}) => {
 
 const props = {
     name: 'file',
     multiple: true,
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',    //It need to be changed with a valid backend api
+    action: 'https://okomo.onrender.com/api/utils/uploadFile',    //It need to be changed with a valid backend api
+    headers:{
+      Authorization:encodeCredentials("OKOMO","QWERTYOKOMOPOIUTYMKOL")
+    },
     onChange(info) {
       const { status } = info.file;
       if (status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
       if (status === 'done') {
+        setThumbnailURL(info.file.response.url)
         message.success(`${info.file.name} file uploaded successfully.`);
       } else if (status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
@@ -26,7 +38,7 @@ const props = {
     },
   };
 
-const UploadThumbnail = () => {
+
   return (
     <>
     <div  className={styles.Tupload}>

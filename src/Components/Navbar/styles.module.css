@@ -41,7 +41,8 @@
     background: #77e38d;
     border-radius: 5px;
 }
-.user_dashSelected>img,.user_mngmtSelected>img,.push_notifSelected>img{
+.user_dashSelected>img,.user_mngmtSelected>img,.master_dataSelected>img,.video_mngmtSelected>img,
+.push_notifSelected>img,.block_reportSelected>img{
     width:8%;
 }
 .user_dashSelected>p,.user_mngmtSelected>p,.master_dataSelected>p,.video_mngmtSelected>p,.push_notifSelected>p,

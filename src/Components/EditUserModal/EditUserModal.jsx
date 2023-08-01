@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import { userRequest } from '../RequestMethod';
 import { message } from 'antd';
 
-const EditUserModal = ({setShowEditUserModal,editingUserData}) => {
+const EditUserModal = ({setShowEditUserModal,editingUserData,fetchData}) => {
     
 
   const [firstName,setFirstName] = useState(editingUserData.fullName);
@@ -25,6 +25,7 @@ const EditUserModal = ({setShowEditUserModal,editingUserData}) => {
     .then(()=>{
         message.success("User updated successfully");
         setShowEditUserModal(false);
+        fetchData();
     })
     .catch((err) => {
         const errorMessage = err.response?.data?.message || "An error occurred";

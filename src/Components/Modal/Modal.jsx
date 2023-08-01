@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import { userRequest } from '../RequestMethod';
 import { message } from "antd";
 
-const Modal = ({setShowAddCategoryModal}) => {
+const Modal = ({setShowAddCategoryModal,fetchData}) => {
   const [category, setCategory] = useState("");
 
   let data = JSON.stringify({
@@ -16,6 +16,7 @@ const Modal = ({setShowAddCategoryModal}) => {
       .then(() => {
         message.success("Category added successfully");
         setShowAddCategoryModal(false);
+        fetchData();
       })
       .catch((err) => {
         const errorMessage = err.response?.data?.message || "An error occurred";

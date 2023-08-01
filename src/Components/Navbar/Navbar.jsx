@@ -7,10 +7,13 @@ import dashboardb from '../../Assets/Images/dashboardb.svg'
 import userMgmtg from "../../Assets/Images/user-mgmtg.png"
 import userMgmtb from "../../Assets/Images/user-mgmtb.png"
 import masterData from "../../Assets/Images/masterdata.png"
+import masterDatab from "../../Assets/Images/masterdatab.svg"
 import videoMgmt from "../../Assets/Images/video-mgmtg.png"
+import videoMgmtb from "../../Assets/Images/video-squareb.svg"
 import pushNotifg from "../../Assets/Images/push-notifg.png"
 import pushNotifb from "../../Assets/Images/push-notifb.png"
 import block from "../../Assets/Images/block.png"
+import blockb from "../../Assets/Images/blockb.svg"
 import logout from "../../Assets/Images/logout.png"
 
 const Navbar = () => {
@@ -47,12 +50,14 @@ const Navbar = () => {
             </div>
 
             <div className={selectedButton === '/masterData' ? styles.master_dataSelected : styles.master_data }>
-                <img src={masterData} alt='missing'></img>
+            {selectedButton === '/masterData' ? <img src={masterDatab} alt='missing'/> : <img src={masterData} alt='missing'/>}
+                {/* <img src={masterData} alt='missing'></img> */}
                 <p onClick={()=>handleButtonClick('/masterData')}>Master Data</p>
             </div>
 
             <div className={selectedButton === '/videoManagement' ? styles.video_mngmtSelected : styles.video_mngmt }>
-                <img src={videoMgmt} alt='missing'></img>
+            {selectedButton === '/videoManagement' ? <img src={videoMgmtb} alt='missing'/> : <img src={videoMgmt} alt='missing'/>}
+                {/* <img src={videoMgmt} alt='missing'></img> */}
                 <p onClick={()=>handleButtonClick('/videoManagement')}>Video Management</p>
             </div>
 
@@ -62,7 +67,8 @@ const Navbar = () => {
             </div>
 
             <div className={selectedButton === '/blockReport' ? styles.block_reportSelected : styles.block_report}>
-                <img src={block} alt='missing'></img>
+            {selectedButton === '/blockReport' ? <img src={blockb} alt='missing'/> : <img src={block} alt='missing'/>}
+                {/* <img src={block} alt='missing'></img> */}
                 <p onClick={()=>handleButtonClick('/blockReport')}>Block & Report</p>
             </div>
             </div>

@@ -58,16 +58,16 @@
     border-radius: 5px;
     border: 1px solid #77e38d;
     color : #77e38d;
-}
-#btn_clear:hover{
     cursor: pointer;
 }
+
 #btn_publish{
     padding: 0.5rem 2rem;
     border-radius: 5px;
     border: none;
     color : #ffffff;
     background: #77e38d;
+    cursor: pointer;
 }
     /* css for next part  */
 

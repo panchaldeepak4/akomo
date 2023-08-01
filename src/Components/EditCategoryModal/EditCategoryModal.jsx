@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import { userRequest } from '../RequestMethod';
 import { message } from "antd";
 
-const EditCategoryModal = ({setShowEditCategoryModal,editingData}) => {
+const EditCategoryModal = ({setShowEditCategoryModal,editingData,fetchData}) => {
 
   const [category, setCategory] = useState(editingData.categoryName);
                                               
@@ -19,6 +19,7 @@ const EditCategoryModal = ({setShowEditCategoryModal,editingData}) => {
       .then(() => {
         message.success("Category updated successfully");
         setShowEditCategoryModal(false);
+        fetchData();
       })
       .catch((err) => {
         const errorMessage = err.response?.data?.message || "An error occurred";

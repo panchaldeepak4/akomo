@@ -1,9 +1,9 @@
 import React,{ useState } from 'react'
 import styles from './styles.module.css'
 
-const Descriptionbox = () => {
+const Descriptionbox = ({description,setDescription}) => {
 
-    const [description, setDescription] = useState('');
+    // const [description, setDescription] = useState('');
 
   const handleChange = (event) => {
     setDescription(event.target.value);
@@ -23,7 +23,7 @@ const Descriptionbox = () => {
       />
       <div>
         {/* <strong>Description:</strong> */}
-        <p>{description}</p>
+        {/* <p>{description}</p> */}
       </div>
     </div>
   

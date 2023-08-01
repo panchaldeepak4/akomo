@@ -143,7 +143,7 @@ const UserManagement = () => {
             <div className={styles.tab}>
             <Table columns={columns} dataSource={data} pagination={false}/>
             {showEditUserModal && <EditUserModal setShowEditUserModal={setShowEditUserModal}
-            editingUserData={editingUserData}/>}
+            editingUserData={editingUserData} fetchData={fetchData}/>}
             </div>
             </div>
 

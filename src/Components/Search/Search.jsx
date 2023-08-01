@@ -3,10 +3,10 @@ import styles from "./styles.module.css"
 import ProfileModal from '../ProfileModal/ProfileModal'
 import search from "../../Assets/Images/search.png"
 import sort from "../../Assets/Images/sort.png"
-import pushNotif from "../../Assets/Images/push-notifb.png"
+import pushnotifig from "../../Assets/Images/pushnotifig.svg"
 import userMgmt from "../../Assets/Images/user-mgmtb.png"
 import dropDown from "../../Assets/Images/ddgrey.png"
-import questionCircle from "../../Assets/Images/question-circle.svg"
+import question from "../../Assets/Images/question.svg"
 import userIcon from "../../Assets/Images/john-doe.svg"
 
 
@@ -27,8 +27,8 @@ const Search = () => {
             </div>
 
     <div className={styles.header_middle}>
-    <img src={questionCircle} alt='missing'></img>
-    <img src={pushNotif} alt='missing'></img>
+    <img src={question} alt='missing'></img>
+    <img src={pushnotifig} alt='missing'></img>
     </div>
 
     <div className={styles.header_right}>

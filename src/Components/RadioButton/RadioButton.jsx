@@ -1,9 +1,9 @@
 import React,{ useState } from 'react'
 import style from './styles.module.css'
 
-const RadioButton = () => {
-    const [selectedValue, setSelectedValue] = useState(null);
-
+const RadioButton = ({selectedValue, setSelectedValue}) => {
+    
+    
     const handleChange = (event) => {
       setSelectedValue(event.target.value);
     };
@@ -11,29 +11,31 @@ const RadioButton = () => {
   return (
     <>
     <div className={style.radio_container}>
-     <label className={style.radio_label}>
+     {/* <label className={style.radio_label} > */}
+     <label className={`${style.radio_label} ${selectedValue === "option1" ? style.selected : ""}`}>
         <input
           type="radio"
-          value="option1"
-          checked={selectedValue === "option1"}
+          value="false"
+          checked={selectedValue === "false"}
           onChange={handleChange}
         />
+        <div className={style.radio_button}><div className={style.radio_button_inner}></div></div>
         Private Videos
       </label>
 
-      <label className={style.radio_label}>
+      {/* <label className={style.radio_label}> */}
+      <label className={`${style.radio_label} ${selectedValue === "option2" ? style.selected : ""}`}>
         <input
           type="radio"
-          value="option2"
-          checked={selectedValue === "option2"}
+          value="true"
+          checked={selectedValue === "true"}
           onChange={handleChange}
         />
+        <div className={style.radio_button}><div className={style.radio_button_inner}></div></div>
         Public Videos
       </label>
       </div>
-      {/* <div>
-        Selected Value: {selectedValue}
-      </div> */}
+      
     </>
   )
 }
