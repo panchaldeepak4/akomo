@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState, useEffect } from 'react'
 import styles from './styles.module.css'
 import { useNavigate } from 'react-router-dom'
 import Search from '../../Components/Search/Search'
@@ -18,7 +18,7 @@ const UploadVideo = () => {
   const [category,setCategory] = useState('');
   const [tag,setTag] = useState('');
   const [selectedValue, setSelectedValue] = useState(null);
-  //console.log(description)
+  //console.log(category)
 
   let data = JSON.stringify({
     "userId" : "64c21257746b8089001fe84a",
@@ -26,7 +26,7 @@ const UploadVideo = () => {
     "url" : thumbnailURL,
     "description" : description,
     "location" : place,
-    "categoryId" : "64b509f249244225438d775e",
+    "categoryId" : category,
     "tags" : tag,
     "isPublic" : selectedValue,
   })
@@ -42,7 +42,27 @@ const UploadVideo = () => {
       message.error(errorMessage);
     });
   }
+  ///////////////////////////////////////////////////////////////To fetch category Id
+  const [user,setUser] = useState('');
 
+  const fetchData = async () => {
+    await userRequest.get("/api/category/getAllCategory?page=1&limit=10&search")
+      .then((response) => {
+        const result = response.data.data;
+        setUser(result);
+      // message.success("data fetched successfully");
+      })
+      .catch((err) => {
+        const errorMessage = err.response?.data?.message || "An error occurred";
+        message.error(errorMessage);
+      });
+  };
+
+  useEffect(()=>{
+    fetchData()
+},[]);
+//console.log(user)
+/////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <>
@@ -86,8 +106,15 @@ const UploadVideo = () => {
 
         <div className={styles.form_element}>
           <label className={styles.form_label}>Category</label>
-          <input type='text' className={styles.form_input} value={category}
-          onChange={(e)=>setCategory(e.target.value)}></input>
+          <select className={styles.form_input} value={category}
+          onChange={(e)=>setCategory(e.target.value)}>
+            <option value=""></option>
+            {user.length > 0 ? (
+            user.map((userData)=>(
+              <option  key={userData._id} value={userData._id}>{userData.categoryName}</option>   
+            ))) : ([])
+            }
+          </select>
         </div>
 
         <div className={styles.form_element}>

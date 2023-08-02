@@ -12,7 +12,10 @@
     display: flex;
 }
 .radio_label.selected {
+    font-size: 0.75rem;
+    display: flex;
     color: #77e38d;       /* Set the text color to green when selected */
+    
   }
 .radio_label input[type="radio"] {
     display: none;
@@ -36,6 +39,7 @@
     background: #000000;
     border-radius: 100%;
   }
-  .radio_label input[type="radio"]:checked + .radio_button_inner {
+  .radio_label input[type="radio"]:checked + .radio_button>.radio_button_inner {
     background: #77e38d ; /* Change border color to green when selected */
+    color: #77e38d;
   }

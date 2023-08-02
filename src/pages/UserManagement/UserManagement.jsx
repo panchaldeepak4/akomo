@@ -15,6 +15,9 @@ const UserManagement = () => {
   const [user ,setUser] = useState([]);
   const [showEditUserModal, setShowEditUserModal] = useState(false);
   const [editingUserData, setEditingUserData] = useState();
+  const [filteredData, setFilteredData] = useState([]);   // for search filter 
+   
+  //console.log(user)
 
   const editUser=(userData)=>{
     setShowEditUserModal(true);
@@ -78,17 +81,17 @@ const UserManagement = () => {
 
 
     const columns = [
-      {
-        title: <Checkbox onChange={(e) => handleSelectAll(e.target.checked)}
-        checked={selectAll}/>,
-        key: 'select',
-        render: (record,index) => {
-          return (
-            <Checkbox onChange={(e) => handleRowSelection(e, record.key)}
-        checked={selectedRows.includes(record.key)}/>
-          )
-        } ,
-      },
+      // {
+      //   title: <Checkbox onChange={(e) => handleSelectAll(e.target.checked)}
+      //   checked={selectAll}/>,
+      //   key: 'select',
+      //   render: (record,index) => {
+      //     return (
+      //       <Checkbox onChange={(e) => handleRowSelection(e, record.key)}
+      //     checked={selectedRows.includes(record.key)}/>
+      //     )
+      //   } ,
+      // },
         { title: 'User Name', dataIndex: 'column1', key: 'column1' },
         { title: 'Name', dataIndex: 'column2', key:  'column2' },
         { title: 'Email Id', dataIndex: 'column3', key: 'column3' },
@@ -105,7 +108,7 @@ const UserManagement = () => {
           column1: userData.userName,
           column2: userData.fullName,
           column3: userData.email, // Ensure 'userData.email' exists before accessing
-          column4: 'Data 4',
+          column4: <div style={{marginLeft:"1.5rem"}}>{userData.postCount}</div>,
           column5: 'Data 5',
           column6: (<div style={{display:"flex",gap:"0.35rem",lineHeight:"0.8rem",fontSize:"0.75rem"}}>
           <Link to='/userManagement/videos' style={{color:"#000000",borderBottom:"1px solid black"}}>View Detail</Link>
@@ -147,7 +150,8 @@ const UserManagement = () => {
             </div>
             </div>
 
-            
+            {npage > 1 ? (
+               
             <div className={styles.footer}>
                 <div className={styles.userBtn}>
                   <button className={styles.userPrev} onClick={prePage}>Previous</button>
@@ -155,8 +159,10 @@ const UserManagement = () => {
                 </div>
 
                  <div className={styles.pagination}>{currentPage} of {npage}</div>
-            </div>     
-
+            </div> 
+            ) : null
+            }
+            
 
         </div>
         </div>
@@ -170,7 +176,7 @@ const UserManagement = () => {
   }
 
   function nextPage(){
-    if(currentPage !== lastIndex){
+    if(currentPage !== npage){
         setCurrentPage(currentPage + 1);
     }
   }

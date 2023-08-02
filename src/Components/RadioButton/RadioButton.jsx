@@ -12,7 +12,8 @@ const RadioButton = ({selectedValue, setSelectedValue}) => {
     <>
     <div className={style.radio_container}>
      {/* <label className={style.radio_label} > */}
-     <label className={`${style.radio_label} ${selectedValue === "option1" ? style.selected : ""}`}>
+     {/* <label className={`${style.radio_label} ${selectedValue === "option1" ? style.selected : ""}`}> */}
+     <label className={selectedValue === "false" ? `${style.radio_label} ${style.selected}` : style.radio_label}>
         <input
           type="radio"
           value="false"
@@ -24,7 +25,7 @@ const RadioButton = ({selectedValue, setSelectedValue}) => {
       </label>
 
       {/* <label className={style.radio_label}> */}
-      <label className={`${style.radio_label} ${selectedValue === "option2" ? style.selected : ""}`}>
+      <label className={selectedValue === "true" ? `${style.radio_label} ${style.selected}` : style.radio_label}>
         <input
           type="radio"
           value="true"

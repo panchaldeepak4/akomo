@@ -28,8 +28,11 @@ const Navbar = () => {
         setSelectedButton(route);
     }
 
-    
-    
+    const handleLogout =()=>{
+        localStorage.clear();
+        navigate('/')
+    }
+
 
   return (
     <>
@@ -75,7 +78,7 @@ const Navbar = () => {
 
             <div className={styles.logout}>
                 <img src={logout} alt='missing' ></img>
-                <p onClick={()=>navigate('/')}> Log out</p>
+                <p onClick={()=>handleLogout}> Log out</p>
             </div>
 
 

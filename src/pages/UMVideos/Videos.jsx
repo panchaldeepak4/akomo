@@ -19,6 +19,8 @@ const Videos = () => {
   const userPost1 = userPost.slice(firstIndex,lastIndex);
   const npage = userPost? Math.ceil(userPost.length/recordsPerPage) : 0;
 
+  //console.log(userPost1)
+
   const fetchData = async () => {
     await userRequest.get("/admin/post/getAllPost?status&search=")
       .then((response) => {
@@ -102,7 +104,7 @@ const Videos = () => {
   }
 
   function nextPage(){
-    if(currentPage !== lastIndex){
+    if(currentPage !== npage){
         setCurrentPage(currentPage + 1);
     }
   }

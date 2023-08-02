@@ -38,6 +38,7 @@
     border-radius: 5px;
     border: 1px solid #77e38d;
     color : #77e38d;
+    cursor: pointer;
 }
 #btn_done{
     padding: 0.5rem 2rem;
@@ -45,8 +46,6 @@
     border: none;
     color : #ffffff;
     background: #77e38d;
-}
-#btn_done:hover{
     cursor: pointer;
 }
 .form_main{

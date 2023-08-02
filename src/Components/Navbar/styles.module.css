@@ -101,6 +101,7 @@
     margin-left: 2rem;
     margin-top: 8rem;
     margin-right: 1rem;
+    padding-left: 1rem;
 }
 .logout:hover{
     background: #77e38d;
@@ -121,3 +122,68 @@
     font-size: 0.75rem;
     color :white;
 }
+
+
+   /* for hovering effect on navbar  */
+
+.user_dash:hover img {
+    filter: brightness(0.7); /* This will make the image slightly darker on hover */
+    cursor: pointer; /* Show a pointer cursor on hover */
+  }
+  
+  .user_dashSelected:hover img {
+    filter: brightness(0.7); /* This will make the image slightly darker on hover */
+    cursor: pointer; /* Show a pointer cursor on hover */
+  }
+  .user_mngmt:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+  .user_mngmtSelected:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+.master_data:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+  .master_dataSelected:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+
+  .video_mngmt:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+  .video_mngmtSelected:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+  .push_notif:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+  .push_notifSelected:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+  .block_report:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+  .block_reportSelected:hover img {
+    filter: brightness(0.7); 
+    cursor: pointer; 
+  }
+  
+  
+  
+  
+  
+  
+
+
+
+
+

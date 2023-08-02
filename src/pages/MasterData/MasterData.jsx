@@ -12,7 +12,6 @@ const MasterData = () => {
     const[showAddCategoryModal,setShowAddCategoryModal] = useState(false);
     
     const [currentPage ,setCurrentPage] = useState(1);
-    
     const recordsPerPage = 4;
     const lastIndex = currentPage*recordsPerPage;
     const firstIndex = lastIndex - recordsPerPage;
@@ -20,6 +19,9 @@ const MasterData = () => {
     const user1 = user.slice(firstIndex, lastIndex);
     const npage = user? Math.ceil(user.length/recordsPerPage) : 0;
     // const numbers = [...Array(npage + 1).key()].slice(1)
+
+    
+    
   
   
     const fetchData = async () => {
@@ -69,7 +71,8 @@ const MasterData = () => {
                       <MasterDataTest  user1={user1} fetchData={fetchData}/>        {/*   Table as component used here */}
                     </div>   
                 </div>
-            
+                                                        {/* pages on condition */}
+                {npage > 1 ? (                        
                 <div className={styles.footer}>
                 <div className={styles.userBtn}>
                   <button className={styles.userPrev} onClick={prePage}>Previous</button>
@@ -78,6 +81,8 @@ const MasterData = () => {
 
                  <div className={styles.pagination}>{currentPage} of {npage}</div>
                  </div>
+                  ) : null
+                }
 
             </div>
      </div>
@@ -91,8 +96,13 @@ const MasterData = () => {
     }
   }
 
+  // function nextPage(){
+  //   if(currentPage !== lastIndex){
+  //       setCurrentPage(currentPage + 1);
+  //   }
+  // }
   function nextPage(){
-    if(currentPage !== lastIndex){
+    if(currentPage !== npage){
         setCurrentPage(currentPage + 1);
     }
   }

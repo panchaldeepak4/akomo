@@ -27,7 +27,7 @@ const Search = () => {
             </div>
 
     <div className={styles.header_middle}>
-    <img src={question} alt='missing'></img>
+    <img src={question} alt='missing'/>
     <img src={pushnotifig} alt='missing'></img>
     </div>
 

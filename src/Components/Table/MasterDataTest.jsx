@@ -21,18 +21,11 @@ const editCategory = (userData)=>{
   }
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-const [deletingData, setDeletingData] = useState('');
 
-let datatoDelete = JSON.stringify({
-  "categoryId" : deletingData._id,
-  "categoryName": deletingData.categoryName,
-  "deleted" : true
-});
 
 const deleteCategory = async (userData) => {
-   setDeletingData(userData)
-  //  e.preventDefault();
-  await userRequest.put('/api/category/updateCategory',datatoDelete)
+   
+  await userRequest.put('/api/category/updateCategory',{categoryId:userData._id,deleted:true})
     .then(() => {
       message.success("Category deleted successfully"); 
       fetchData();
@@ -70,13 +63,13 @@ const handleRowSelection = (e, key) => {
 };
 
 const columns = [
-  {
-    title: <Checkbox onChange={(e) => handleSelectAll(e.target.checked)}
-    checked={selectAll}/>,
-    key: 'select',
-    render: (record) => <Checkbox onChange={(e) => handleRowSelection(e, record.key)}
-    checked={selectedRows.includes(record.key)}/>,
-  },
+  // {
+  //   title: <Checkbox onChange={(e) => handleSelectAll(e.target.checked)}
+  //   checked={selectAll}/>,
+  //   key: 'select',
+  //   render: (record) => <Checkbox onChange={(e) => handleRowSelection(e, record.key)}
+  //   checked={selectedRows.includes(record.key)}/>,
+  // },
     { title: 'Category ID', dataIndex: 'column1', key: 'column1' },
     { title: 'Category name', dataIndex: 'column2', key: 'column2' },
     { title: 'Add date', dataIndex: 'column3', key: 'column3' },
