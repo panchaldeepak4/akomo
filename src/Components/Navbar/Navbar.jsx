@@ -15,6 +15,7 @@ import pushNotifb from "../../Assets/Images/push-notifb.png"
 import block from "../../Assets/Images/block.png"
 import blockb from "../../Assets/Images/blockb.svg"
 import logout from "../../Assets/Images/logout.png"
+import { publicRequest } from '../RequestMethod'
 
 const Navbar = () => {
     const [selectedButton, setSelectedButton] = useState('');
@@ -28,11 +29,23 @@ const Navbar = () => {
         setSelectedButton(route);
     }
 
-    const handleLogout =()=>{
-        localStorage.clear();
-        navigate('/')
-    }
-
+    
+    const handleLogout = async () => {
+        try {
+          const userToken = JSON.parse(localStorage.getItem("token"));
+          //console.log(userToken)
+        //   if (userToken) {
+        //     await publicRequest.post("/admin/auth/logout", { token: userToken });
+        //   }
+          //localStorage.removeItem("token");
+          localStorage.clear();
+          navigate('/');
+          window.location.reload()
+        } catch (err) {
+          console.error('Logout failed:', err);
+        }
+      };
+    
 
   return (
     <>
@@ -78,7 +91,7 @@ const Navbar = () => {
 
             <div className={styles.logout}>
                 <img src={logout} alt='missing' ></img>
-                <p onClick={()=>handleLogout}> Log out</p>
+                <p onClick={handleLogout}> Log out</p>
             </div>
 
 

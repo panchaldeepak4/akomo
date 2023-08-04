@@ -22,6 +22,7 @@
 #header_t1{
     font-size: 1.15rem;
     font-weight: 500;
+    color:#00054F;
 }
 #header_t2{
     font-size: 0.75rem;
@@ -74,7 +75,7 @@
     margin-top: 1.75rem;
     display: flex;
     flex-direction: column;
-    height: 4rem;
+    height: 5rem;
     /* background: red; */
 }
 .form_label{
@@ -83,7 +84,8 @@
 }
 .form_input{
     width: 15rem;
-    height: 80%;
+    /* height: 80%; */
+    height: 2.5rem;
     /* line-height: 2.5rem; */
     border-radius: 5px;
     border: none;
@@ -93,4 +95,10 @@
 .form_row2{
     margin-left: 2rem;
     margin-top: 2rem;
+}
+.error_message{
+    font-size: 0.85rem;
+    font-family: 500;
+    color: red;
+    
 }

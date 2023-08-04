@@ -1,12 +1,14 @@
 import React,{ useState } from 'react'
 import styles from "./styles.module.css";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { publicRequest, userRequest } from "../../Components/RequestMethod";
 import { message } from "antd";
 
 const Login = () => {
     const navigate = useNavigate();
+    
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
   
@@ -16,12 +18,12 @@ const Login = () => {
     });
   
     const handleLogin = async (e) => {
-      e.preventDefault();
      await publicRequest.post("/admin/auth/login", data)
         .then((res) => {
           message.success("Logged In successfully");
           localStorage.setItem("token",JSON.stringify(res.data.token))
           navigate('/dashboard');
+          window.location.reload()
         })
         .catch((err) => {
           const errorMessage = err.response?.data?.message || "An error occurred";
@@ -37,17 +39,21 @@ const Login = () => {
             <img src="Images/logo.png"></img>
             <p id={styles.wel_txt1}>Welcome back</p>
             <p className={styles.wel_txt2}>
-              Lorem ipsum is simply dummy text of the
+              Lorem Ipsum is simply dummy text of the
             </p>
-            <p className={styles.wel_txt3}>Lorem ipsum has been the industry</p>
+            <p className={styles.wel_txt3}>Lorem Ipsum has been the industry's</p>
             <div className={styles.input}>
+              <div className={styles.envelope}>
+              <img src="Images/envelope.png" style={{width:"0.85rem",marginRight:"1rem",marginBottom:"1rem"}} ></img>
               <input
                 type="text"
                 className={styles.input1}
-                placeholder="username"
+                placeholder="Email"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               ></input>
+              </div>
+
               <input
                 type="password"
                 className={styles.input2}

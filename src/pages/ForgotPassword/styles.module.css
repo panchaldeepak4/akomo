@@ -51,27 +51,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
     margin-top: 4rem;
     height:20vh;
     /* background: green; */
 }
-.envelope{
-    width:100%;
-    display: flex;
-    justify-content: center;
-    
-}
+
 .input1{
     width:35%;
     background: transparent;
     border: none;
     border-bottom: 1px solid grey; 
     color:#ffffff;
-    margin-right: 4rem;
+    /* margin-right: 4rem; */
     margin-top: 0.35rem;
     height: 1.75rem;
     /* background: red; */
+}
+.text{
+    font-size: 0.75rem;
+    color:#77E38D;
+    /* background: red; */
+    margin-right: 9rem;
+    margin-top: -0.5rem;
+    
 }
 .input2{
     width: 35%;
@@ -82,20 +85,26 @@
     color:#ffffff;
     height: 1.75rem;
 }
+/* .input1{
+    background: url('../../../public/Images/envelope.png');
+    background-size: 12px; 
+    background-repeat: no-repeat;
+    background-position-x: 10px;
+} */
 
 .forgot_p{
     font-size: 0.65rem;
     color: #77E38D;
     /* float: right; */
     margin-left: 58%;
-    margin-top: -0.75rem;
+    margin-top: 1.5rem;
     cursor: pointer;
 }
 
 .btn{
     display: flex;
     justify-content: center;
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
 }
 .btn button{
     display: flex;
@@ -104,9 +113,10 @@
     background: #77E38D;
     border: none;
     border-radius: 8px;
+}
+.btn button:hover{
     cursor: pointer;
 }
-
 
                                       /* Second half */
 

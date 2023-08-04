@@ -15,8 +15,7 @@ const UserManagement = () => {
   const [user ,setUser] = useState([]);
   const [showEditUserModal, setShowEditUserModal] = useState(false);
   const [editingUserData, setEditingUserData] = useState();
-  const [filteredData, setFilteredData] = useState([]);   // for search filter 
-   
+    
   //console.log(user)
 
   const editUser=(userData)=>{
@@ -24,17 +23,28 @@ const UserManagement = () => {
     setEditingUserData(userData);
   }
   
-
  const [currentPage, setCurrentPage] = useState(1);
 
- const recordsPerPage = 6;
+ const recordsPerPage = 5;
  const lastIndex = currentPage*recordsPerPage;
  const firstIndex = lastIndex - recordsPerPage;
  const user1 = user.slice(firstIndex, lastIndex);
  const npage = user? Math.ceil(user.length/recordsPerPage): 0;
 
-  const fetchData = async () => {
-    await userRequest.get("/admin/customer/getAllUsers?page=1&limit=5&search")
+ 
+  /////////////////////////////////////applying filter
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+    fetchData(e.target.value);
+    
+  };
+  //////////////////////////////////////////////////////////////
+
+  const fetchData = async (searchQuery) => {
+     //await userRequest.get("/admin/customer/getAllUsers?page=1&limit=5&search")
+     await userRequest.get(`/admin/customer/getAllUsers?page=1&limit=20&search=${searchQuery}`)
       .then((response) => {
         const result = response.data.data;
         setUser(result);
@@ -48,9 +58,10 @@ const UserManagement = () => {
   };
 
   useEffect(()=>{
-    fetchData()
+     fetchData(" ")
+  
 },[]);
- 
+///////////////////////////////////////////////////////////////////////////////////////
 
  const navigate = useNavigate();
 
@@ -77,9 +88,6 @@ const UserManagement = () => {
     }
   };
 
-
-
-
     const columns = [
       // {
       //   title: <Checkbox onChange={(e) => handleSelectAll(e.target.checked)}
@@ -92,7 +100,7 @@ const UserManagement = () => {
       //     )
       //   } ,
       // },
-        { title: 'User Name', dataIndex: 'column1', key: 'column1' },
+        { title: <div style={{lineHeight:"0.5rem"}}>User Name</div>, dataIndex: 'column1', key: 'column1' },
         { title: 'Name', dataIndex: 'column2', key:  'column2' },
         { title: 'Email Id', dataIndex: 'column3', key: 'column3' },
         { title: 'Public Post', dataIndex: 'column4', key: 'column4' },
@@ -102,12 +110,13 @@ const UserManagement = () => {
         
       ];
     
-      const data = user1.length > 0 ? (
-        user1.map((userData) => ({
+      //  const data = user1.length > 0 ? (
+         const data = user1.length > 0 ? (
+          user1.map((userData) => ({
           key: userData._id,
-          column1: userData.userName,
-          column2: userData.fullName,
-          column3: userData.email, // Ensure 'userData.email' exists before accessing
+          column1: <div style={{width:"5rem"}}>{userData.userName}</div>,
+          column2: <div style={{width:"5rem"}}>{userData.fullName}</div>,
+          column3: <div style={{width:"10rem"}}>{userData.email}</div>, // Ensure 'userData.email' exists before accessing
           column4: <div style={{marginLeft:"1.5rem"}}>{userData.postCount}</div>,
           column5: 'Data 5',
           column6: (<div style={{display:"flex",gap:"0.35rem",lineHeight:"0.8rem",fontSize:"0.75rem"}}>
@@ -129,9 +138,8 @@ const UserManagement = () => {
   return (
     <>
       
-    
         <div className={styles.um_right}>
-            <Search />
+            <Search searchText={searchText} handleSearch={handleSearch} />
             <div className={styles.header}>
                 <p id={styles.um_text}>User Management</p>
                 <div className={styles.btn}>
@@ -160,8 +168,8 @@ const UserManagement = () => {
 
                  <div className={styles.pagination}>{currentPage} of {npage}</div>
             </div> 
-            ) : null
-            }
+             ) : null
+             } 
             
 
         </div>

@@ -26,7 +26,7 @@ const columns = [
     
     userPost1.map((postData)=>({
       key: postData._id,
-      column1: (<div><img src={postData.url} alt='missing'/></div>),
+      column1: (<div style={{width:"4rem",height:"2rem"}}><img src={postData.url} style={{width:"70%"}} alt='missing'/></div>),
       column2: (<div style={{width:"10rem"}}>{postData.description}</div>),
       column3: postData.location,
       column4: postData.categoryId.categoryName,

@@ -10,9 +10,10 @@ import question from "../../Assets/Images/question.svg"
 import userIcon from "../../Assets/Images/john-doe.svg"
 
 
-const Search = () => {
+const Search = ({searchText,handleSearch}) => {
   const[showProfile,setShowProfile] = useState(false);
-
+ 
+  
   const droppDown = ()=>{  
     setShowProfile(true);
   }
@@ -22,7 +23,7 @@ const Search = () => {
     <div className={styles.search_container}>
       <div className={styles.header_bar}>
                 <img src={search} alt='missing'></img>
-                <input type='text' placeholder='search'></input>
+                <input type='text' placeholder='search' value={searchText} onChange={handleSearch} ></input>
                 <img src={sort} alt='missing'></img>
             </div>
 

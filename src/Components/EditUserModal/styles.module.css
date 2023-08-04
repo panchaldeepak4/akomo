@@ -1,13 +1,14 @@
-.modal_container{
+/* .modal_container{
     position: fixed;
     top: 20%;
-    left: 40%;
-}
+    left: 30%;
+    background: red;
+} */
 
 .addUser_right{
     position: fixed;
-    top: 20%;
-    left: 20%;
+    top: 8%;
+    left: 18%;
     z-index: 1;
     width: 82%;
     height: 100vh;

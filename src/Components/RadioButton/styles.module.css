@@ -10,6 +10,7 @@
 .radio_label{
     font-size: 0.75rem;
     display: flex;
+    font-weight: 700;
 }
 .radio_label.selected {
     font-size: 0.75rem;
@@ -29,6 +30,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
   .radio_label input[type="radio"]:checked + .radio_button {
     border-color: #77e38d ; /* Change border color to green when selected */
@@ -38,6 +40,7 @@
     height: 0.25rem;
     background: #000000;
     border-radius: 100%;
+    font-weight: 600;
   }
   .radio_label input[type="radio"]:checked + .radio_button>.radio_button_inner {
     background: #77e38d ; /* Change border color to green when selected */

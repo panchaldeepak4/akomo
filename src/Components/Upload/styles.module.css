@@ -2,14 +2,19 @@
     margin-top: 2rem;
     width: 30%;
     height: 50%;
+    /* background: red; */
 }
 .Tupload{
     margin-top: 2rem;
-    width: 18%;
-    height: 50%;
+    width: 20%;
+    height: 40%;
+    /* background: green; */
 }
-.icon{
+.Vicon,.Ticon{
     width: 10%;
+}
+.Tpic_icon{
+    width: 5rem;
 }
 .text{
     font-size: 0.75rem;

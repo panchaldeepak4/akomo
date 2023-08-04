@@ -98,12 +98,15 @@
         display: flex;
         /* justify-content: space-evenly; */
         gap: 10%;
+        /* background: green; */
     }
      
     .form_element{
         display: flex;
         flex-direction: column;
         height: 3.5rem;
+        width: 20%;
+        /* background: red; */
         
     }
     .form_label{

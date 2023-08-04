@@ -12,7 +12,7 @@ const encodeCredentials = (username, password) => {
   return `Basic ${encodedCredentials}`;
 };
 
-const UploadThumbnail = ({setThumbnailURL}) => {
+const UploadThumbnail = ({thumbnailURL,setThumbnailURL}) => {
 
 const props = {
     name: 'file',
@@ -45,12 +45,16 @@ const props = {
     <Dragger {...props}>
     {/* <p className="ant-upload-drag-icon">
       <InboxOutlined />
-    </p> */}
+    </p>  */}
+      {thumbnailURL ? (
+            <img className={styles.Tpic_icon} src={thumbnailURL} alt="Uploaded Image" />
+          ) : (
     <p className="ant-upload-drag-icon">
-      <img className={styles.icon} src={addIcon}></img>
-    </p>
+      <img className={styles.Ticon} src={addIcon}></img>
+      <p className="ant-upload-text"><span className={styles.text}>Choose/Upload video</span></p>
+    </p>)}
 
-    <p className="ant-upload-text"><span className={styles.text}>Choose/Upload Thumbnail</span></p>
+
     {/* <p className="ant-upload-hint">
       Support for a single or bulk upload. Strictly prohibited from uploading company data or other
       banned files.

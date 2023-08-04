@@ -1,7 +1,36 @@
-import React from 'react'
-import styles from "../Home/styles.module.css";
+import React,{ useState } from 'react'
+import styles from "./styles.module.css";
+import { useNavigate } from 'react-router-dom';
+import { userRequest } from '../../Components/RequestMethod';
+import { message } from 'antd';
+
 
 const ForgotPassword2 = () => {
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword,setConfirmPassword] = useState('');
+  //console.log(newPassword)
+
+  const navigate = useNavigate()
+
+  const newData = JSON.stringify({
+    "email" : localStorage.getItem("email"),
+    "password" : newPassword
+  });
+
+  const updatePassword = async(e) =>{
+    await userRequest.put("/admin/auth/forgotPassword",newData)
+    .then(()=>{
+      message.success("Password updated successfully");
+      navigate('/dashboard');
+      localStorage.removeItem("email")
+    })
+    .catch((err)=>{
+      const errorMessage = err.response?.data?.message || "An error occured";
+      message.error(errorMessage);
+      localStorage.removeItem("email")
+    })
+  }
+
   return (
     <>
     <div className={styles.home_main}>
@@ -10,17 +39,20 @@ const ForgotPassword2 = () => {
         
       <div className={styles.welcome_txt}>
       <img src='Images/logo.png'></img>
-        <p id={styles.wel_txt1}>Welcome back</p>
-        <p className={styles.wel_txt2}>Lorem ipsum is simply dummy text of the</p>
-        <p className={styles.wel_txt3}>Lorem ipsum has been the industry</p>
+        <p id={styles.wel_txt1}>Forgot password?</p>
+        <p className={styles.wel_txt2}>Lorem Ipsum is simply dummy text of the</p>
+        <p className={styles.wel_txt3}>Lorem Ipsum has been the industry's</p>
         <div className={styles.input}>
-        <input type='email'  className={styles.input1} placeholder='Set new password'></input>
-        <input type='password' className={styles.input2} placeholder='Confirm password'></input>
+        <input type='email'  className={styles.input1} placeholder='Set new password'
+        value={newPassword} onChange={(e)=>setNewPassword(e.target.value)}></input>
+        <div className={styles.text}>Must be at least 8 characters</div>
+        <input type='password' className={styles.input2} placeholder='Confirm password'
+        value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}></input>
         </div>
         {/* <p className={styles.forgot_p}>Forgot password?</p> */}
 
         <div className={styles.btn}>
-        <button >Confirm</button>
+        <button onClick={updatePassword}>Confirm</button>
         </div>
       </div>
 

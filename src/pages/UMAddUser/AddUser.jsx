@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from "./styles.module.css"
 import Search from '../../Components/Search/Search'
@@ -12,6 +12,10 @@ const AddUser = () => {
   const [lastName,setLastName] = useState('');
   const [phone,setPhone] = useState('');
   const [email,setEmail] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+  const [phoneTouched, setPhoneTouched] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
 
   let data = JSON.stringify({
     "fullName": firstName,
@@ -32,7 +36,30 @@ const AddUser = () => {
         message.error(errorMessage);
       });
   };
+  ///////////////////////////////////////////////////////////////////////////////////
 
+  useEffect(() => {
+  const phoneRegex = /^\d{10}$/; // Assuming you expect a 10-digit phone number
+  if (!phoneRegex.test(phone) && phoneTouched) {
+    setPhoneError('Invalid phone number');
+  } else {
+    setPhoneError('');
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email) && emailTouched) {
+    setEmailError('Invalid email address');
+  } else {
+    setEmailError('');
+  }
+ }, [phone, email]);
+
+ const handlePhoneBlur = () => {
+  setPhoneTouched(true);
+};
+const handleEmailBlur = () => {
+  setEmailTouched(true);
+};
 
   return (
     <>
@@ -68,16 +95,19 @@ const AddUser = () => {
 
         <div className={styles.form_element}>
           <label className={styles.form_label}>Phone Number</label>
-          <input type='text' className={styles.form_input} value={phone}
-          onChange={(e)=>setPhone(e.target.value)}></input>
+          <input type='number' className={styles.form_input} value={phone}
+          onChange={(e)=>setPhone(e.target.value)} onBlur={handlePhoneBlur}>
+          </input>
+          {phoneError && phoneTouched && <span className={styles.error_message}>{phoneError}</span>}
         </div>
         </div>
 
         <div className={styles.form_row2}>
         <div className={styles.form_element}>
           <label className={styles.form_label}>E-Mail</label>
-          <input type='text' className={styles.form_input} value={email}
-          onChange={(e)=>setEmail(e.target.value)}></input>
+          <input type='email' className={styles.form_input} value={email}
+          onChange={(e)=>setEmail(e.target.value)} onBlur={handleEmailBlur}></input>
+          {emailError && emailTouched && <span className={styles.error_message}>{emailError}</span>}
         </div>
         </div>
 
