@@ -51,7 +51,7 @@ const props = {
           ) : (
     <p className="ant-upload-drag-icon">
       <img className={styles.Ticon} src={addIcon}></img>
-      <p className="ant-upload-text"><span className={styles.text}>Choose/Upload video</span></p>
+      <p className="ant-upload-text"><span className={styles.text}>Choose/Upload thumbnail</span></p>
     </p>)}
 
 

@@ -15,6 +15,7 @@ const encodeCredentials = (username, password) => {
 
 
 const Upload1 = ({videoURL,setVideoURL}) => {
+  const [isVideoUploaded, setIsVideoUploaded] = useState(false); 
  
   //console.log(videoURL);
   const props = {
@@ -34,10 +35,15 @@ const Upload1 = ({videoURL,setVideoURL}) => {
       }
       if (status === 'done') {
         if(type.includes('image')){
-          // setImageURL(info.file.response.url);
-          message.error("Please upload video")
+          message.error("Please upload video");
         }else if(type.includes('video') && originFileObj instanceof File){
+        if(isVideoUploaded){
+          message.error("Video already uploaded. Please remove it first.")
+          return;
+        }
+        
           setVideoURL(info.file.response.url);
+          setIsVideoUploaded(true);
           message.success(`${info.file.name} file uploaded successfully.`);
         }
         //console.log("completed hjfd",info.file.response.url);

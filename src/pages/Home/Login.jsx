@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState, useEffect } from 'react'
 import styles from "./styles.module.css";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
@@ -9,15 +9,26 @@ import { message } from "antd";
 const Login = () => {
     const navigate = useNavigate();
     
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [isTouchedEmail, setIsTouchedEmail] = useState(false);
+    const [isTouchedPassword, setIsTouchedPassword] = useState(false);
   
     let data = JSON.stringify({
-      "email": username,
+      "email": email,
       "password": password
     });
   
     const handleLogin = async (e) => {
+
+      if (!email.trim() || !password.trim()) {
+        setEmailError(!email.trim() ? 'Please enter your email.' : '');
+        setPasswordError(!password.trim() ? 'Please enter your password.' : '');
+        return; // Return early to avoid making the API call
+      }else {
+       
      await publicRequest.post("/admin/auth/login", data)
         .then((res) => {
           message.success("Logged In successfully");
@@ -29,7 +40,25 @@ const Login = () => {
           const errorMessage = err.response?.data?.message || "An error occurred";
           message.error(errorMessage);
         });
+      }
     };
+
+    useEffect(() => {
+      if (isTouchedEmail) {
+      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+        setEmailError('Invalid email address');
+      } else {
+        setEmailError('');
+      }}
+      
+       else if(isTouchedPassword){
+      if (!/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$/.test(password)) {
+        setPasswordError('Password should be at least 8 characters long.');
+      } else {
+        setPasswordError('');
+      }
+     }
+    }, [email,password,isTouchedEmail,isTouchedPassword]);
 
   return (
     <>
@@ -46,21 +75,26 @@ const Login = () => {
               <div className={styles.envelope}>
               <img src="Images/envelope.png" style={{width:"0.85rem",marginRight:"1rem",marginBottom:"1rem"}} ></img>
               <input
-                type="text"
+                type="email"
                 className={styles.input1}
                 placeholder="Email"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => {setEmail(e.target.value);
+                  setIsTouchedEmail(true); }}
+
               ></input>
               </div>
+              {emailError && <div className={styles.mail_error}>{emailError}</div>}
 
               <input
                 type="password"
                 className={styles.input2}
                 placeholder="Enter Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {setPassword(e.target.value);
+                  setIsTouchedPassword(true); }}
               ></input>
+              {passwordError && <div className={styles.pass_error}>{passwordError}</div>}
             </div>
             <p className={styles.forgot_p} onClick={()=>navigate('/forgotPassword')}>Forgot password?</p>
 

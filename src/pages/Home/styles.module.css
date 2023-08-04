@@ -82,13 +82,26 @@
     color:#ffffff;
     height: 1.75rem;
 }
+.mail_error{
+    font-size: 0.75rem;
+    margin-top: -1.5rem;
+    margin-right: 11rem;
+    color: red;
+    /* background: green; */
+}
+.pass_error{
+    font-size: 0.75rem;
+    margin-top: -1.3rem;
+    margin-right: 3.1rem;
+    color: red;
+}
 
 .forgot_p{
     font-size: 0.65rem;
     color: #77E38D;
     /* float: right; */
     margin-left: 58%;
-    margin-top: -0.75rem;
+    margin-top: -0.5rem;
     cursor: pointer;
 }
 
