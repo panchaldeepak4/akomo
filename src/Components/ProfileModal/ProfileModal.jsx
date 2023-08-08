@@ -10,8 +10,8 @@ const ProfileModal = ({setShowProfile}) => {
   return (
     <>
     <div className={styles.prof_container}> 
-        <p>My Profile</p>
-        <p>Change Password</p>
+        <p onClick={()=>handleClick()}>My Profile</p>
+        <p onClick={()=>handleClick()}>Change Password</p>
         <p onClick={()=>handleClick()}>Notifications</p>
     </div>
     </>

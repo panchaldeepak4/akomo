@@ -25,7 +25,8 @@ const EditUserModal = ({setShowEditUserModal,editingUserData,fetchData}) => {
     .then(()=>{
         message.success("User updated successfully");
         setShowEditUserModal(false);
-        fetchData();
+        // fetchData();
+        window.location.reload();
     })
     .catch((err) => {
         const errorMessage = err.response?.data?.message || "An error occurred";
@@ -44,7 +45,7 @@ const EditUserModal = ({setShowEditUserModal,editingUserData,fetchData}) => {
         </div>
 
         <div className={styles.header_right}>
-          <button id={styles.btn_clear} onClick={() => setShowEditUserModal(false)}>Cancel</button>
+          <button id={styles.btn_cancel} onClick={() => setShowEditUserModal(false)}>Cancel</button>
           <button id={styles.btn_done} onClick={() => updateUser()}>Update</button>
         </div>
       </div>

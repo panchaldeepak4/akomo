@@ -28,7 +28,7 @@ const ForgotPassword2 = () => {
     .catch((err)=>{
       const errorMessage = err.response?.data?.message || "An error occured";
       message.error(errorMessage);
-      localStorage.removeItem("email")
+      // localStorage.removeItem("email")
     })
   }
 

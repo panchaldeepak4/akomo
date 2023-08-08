@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import styles from './styles.module.css'
 import addIcon from "../../Assets/Images/addicon.png"
 import { message, Upload } from 'antd';
@@ -13,24 +13,48 @@ const encodeCredentials = (username, password) => {
 };
 
 const UploadThumbnail = ({thumbnailURL,setThumbnailURL}) => {
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const [fileList, setFileList] = useState([]);
+
 
 const props = {
     name: 'file',
-    multiple: true,
+    multiple: false,
     action: 'https://okomo.onrender.com/api/utils/uploadFile',    //It need to be changed with a valid backend api
     headers:{
       Authorization:encodeCredentials("OKOMO","QWERTYOKOMOPOIUTYMKOL")
     },
+    fileList: fileList,
+    
+    beforeUpload(file) {
+      if (file.type.includes('image/jpeg')) {
+        // console.log('file',file);
+        return true; // Allow only video files
+      } else if(file.type.includes('video/mp4')){
+        console.log('video uploading not required');
+        message.error('Please upload a image file');
+        // console.log('file',file);
+      //   setFileList([]);
+        return false; // Reject the file and don't add it to the fileList
+      }else {
+        return false;
+      }
+    },
     onChange(info) {
       const { status } = info.file;
-      if (status !== 'uploading') {
+      if (status === 'uploading') {
         //console.log(info.file, info.fileList);
+        setFileList([info.file]);
       }
       if (status === 'done') {
+        console.log('info', info);
         setThumbnailURL(info.file.response.url)
+        setIsImageUploaded(true);
         message.success(`${info.file.name} file uploaded successfully.`);
+        setFileList([]); 
       } else if (status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
+        setFileList([]);
       }
     },
     onDrop(e) {
@@ -42,10 +66,8 @@ const props = {
   return (
     <>
     <div  className={styles.Tupload}>
-    <Dragger {...props}>
-    {/* <p className="ant-upload-drag-icon">
-      <InboxOutlined />
-    </p>  */}
+    <Dragger {...props} disabled={isImageUploaded}>
+    
       {thumbnailURL ? (
             <img className={styles.Tpic_icon} src={thumbnailURL} alt="Uploaded Image" />
           ) : (
@@ -55,10 +77,6 @@ const props = {
     </p>)}
 
 
-    {/* <p className="ant-upload-hint">
-      Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-      banned files.
-    </p> */}
   </Dragger>
   </div>
     </>

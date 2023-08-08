@@ -9,7 +9,9 @@ const AddUser = () => {
   const navigate = useNavigate();
 
   const [firstName,setFirstName] = useState('');
+  const [firstNameTouched,setFirstNameTouched] = useState(false);
   const [lastName,setLastName] = useState('');
+  const [lastNameTouched,setLastNameTouched] = useState(false);
   const [phone,setPhone] = useState('');
   const [email,setEmail] = useState('');
   const [phoneError, setPhoneError] = useState('');
@@ -17,36 +19,25 @@ const AddUser = () => {
   const [emailError, setEmailError] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
 
-  let data = JSON.stringify({
-    "fullName": firstName,
-    "lastName": lastName,
-    "phoneNumber": phone,
-    "email": email
-  });
 
-  const addUser = async (e) => {
-      //e.preventDefault();
-   await userRequest.post("/admin/customer/createUser", data)
-      .then(() => {
-        message.success("Category added successfully");
-        navigate('/userManagement');
-      })
-      .catch((err) => {
-        const errorMessage = err.response?.data?.message || "An error occurred";
-        message.error(errorMessage);
-      });
-  };
   ///////////////////////////////////////////////////////////////////////////////////
+  const validateName = (name) => {
+    const nameRegex = /^[A-Za-z]+$/;
+    return nameRegex.test(name);
+  };
+
+  const phoneRegex = /^\d{10}$/; // Assuming you expect a 10-digit phone number
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   useEffect(() => {
-  const phoneRegex = /^\d{10}$/; // Assuming you expect a 10-digit phone number
+  
   if (!phoneRegex.test(phone) && phoneTouched) {
     setPhoneError('Invalid phone number');
   } else {
     setPhoneError('');
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
   if (!emailRegex.test(email) && emailTouched) {
     setEmailError('Invalid email address');
   } else {
@@ -54,12 +45,48 @@ const AddUser = () => {
   }
  }, [phone, email]);
 
+ const handleFirstNameBlur = () => {
+  setFirstNameTouched(true);
+};
+const handleLastNameBlur = () => {
+  setLastNameTouched(true);
+};
  const handlePhoneBlur = () => {
   setPhoneTouched(true);
 };
 const handleEmailBlur = () => {
   setEmailTouched(true);
 };
+//////////////////////////////////////////////////////////////////////////////////////////
+let data = JSON.stringify({
+  "fullName": firstName,
+  "lastName": lastName,
+  "phoneNumber": phone,
+  "email": email
+});
+
+const addUser = async (e) => {
+  if (
+    !validateName(firstName) ||
+    !validateName(lastName) ||
+    !phoneRegex.test(phone) ||
+    !emailRegex.test(email)
+  ) {
+    message.error("Please enter correct details");
+    return;
+  }else{
+    //e.preventDefault();
+ await userRequest.post("/admin/customer/createUser", data)
+    .then(() => {
+      message.success("Category added successfully");
+      navigate('/userManagement');
+    })
+    .catch((err) => {
+      const errorMessage = err.response?.data?.message || "An error occurred";
+      message.error(errorMessage);
+    });
+}};
+
 
   return (
     <>
@@ -84,13 +111,19 @@ const handleEmailBlur = () => {
         <div className={styles.form_element}>
           <label className={styles.form_label}>First Name</label>
           <input type='text' className={styles.form_input} value={firstName} 
-          onChange={(e)=>setFirstName(e.target.value)}></input>
+          onChange={(e)=>setFirstName(e.target.value)} onBlur={handleFirstNameBlur}></input>
+           {!validateName(firstName) && firstNameTouched &&(
+                  <span className={styles.error_message}>First Name should contain only letters</span>
+                )}
         </div>
 
         <div className={styles.form_element}>
           <label className={styles.form_label}>Last Name</label>
           <input type='text' className={styles.form_input} value={lastName} 
-          onChange={(e)=>setLastName(e.target.value)}></input>
+          onChange={(e)=>setLastName(e.target.value)} onBlur={handleLastNameBlur}></input>
+           {!validateName(lastName) && lastNameTouched &&(
+                  <span className={styles.error_message}>Last Name should contain only letters</span>
+                )}
         </div>
 
         <div className={styles.form_element}>

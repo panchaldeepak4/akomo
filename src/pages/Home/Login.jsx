@@ -27,7 +27,7 @@ const Login = () => {
         setEmailError(!email.trim() ? 'Please enter your email.' : '');
         setPasswordError(!password.trim() ? 'Please enter your password.' : '');
         return; // Return early to avoid making the API call
-      }else {
+      }else if(!emailError && !passwordError){
        
      await publicRequest.post("/admin/auth/login", data)
         .then((res) => {
