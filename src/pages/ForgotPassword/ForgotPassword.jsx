@@ -14,8 +14,8 @@ const ForgotPassword = () => {
 
   useEffect(()=>{
     localStorage.setItem("email",email)
-  }
-  ,[email])
+  },[email])
+  
   return (
     <>
     <div className={styles.home_main}>

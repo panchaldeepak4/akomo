@@ -1,7 +1,7 @@
 import React,{ useState } from 'react'
 import styles from "./styles.module.css";
 import { useNavigate } from 'react-router-dom';
-import { userRequest } from '../../Components/RequestMethod';
+import { publicRequest, userRequest } from '../../Components/RequestMethod';
 import { message } from 'antd';
 
 
@@ -14,15 +14,16 @@ const ForgotPassword2 = () => {
 
   const newData = JSON.stringify({
     "email" : localStorage.getItem("email"),
-    "password" : newPassword
+    "password" : confirmPassword
   });
 
   const updatePassword = async(e) =>{
-    await userRequest.put("/admin/auth/forgotPassword",newData)
+    await publicRequest.put("/admin/auth/forgotPassword",newData)
     .then(()=>{
       message.success("Password updated successfully");
       navigate('/dashboard');
-      localStorage.removeItem("email")
+      localStorage.removeItem("email");
+      window.location.reload();
     })
     .catch((err)=>{
       const errorMessage = err.response?.data?.message || "An error occured";
@@ -43,7 +44,7 @@ const ForgotPassword2 = () => {
         <p className={styles.wel_txt2}>Lorem Ipsum is simply dummy text of the</p>
         <p className={styles.wel_txt3}>Lorem Ipsum has been the industry's</p>
         <div className={styles.input}>
-        <input type='email'  className={styles.input1} placeholder='Set new password'
+        <input type='password'  className={styles.input1} placeholder='Set new password'
         value={newPassword} onChange={(e)=>setNewPassword(e.target.value)}></input>
         <div className={styles.text}>Must be at least 8 characters</div>
         <input type='password' className={styles.input2} placeholder='Confirm password'

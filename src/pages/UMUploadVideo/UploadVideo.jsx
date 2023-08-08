@@ -90,7 +90,7 @@ const UploadVideo = () => {
       
       
        <div className={styles.uploadV_video}>
-      <UploadVido videoURL={videoURL} setVideoURL={setVideoURL}/>    {/* UploadVideo as component used here  */}
+      <UploadVido videoURL={videoURL} setVideoURL={setVideoURL}/>   {/*  UploadVideo as component used here  */}
       <UploadThumbnail thumbnailURL={thumbnailURL} setThumbnailURL={setThumbnailURL}/>   {/* UploadThumbnail as component used here  */}
       <RadioButton selectedValue={selectedValue} setSelectedValue={setSelectedValue} /> {/* Radiobutton as component used here  */}
       </div>

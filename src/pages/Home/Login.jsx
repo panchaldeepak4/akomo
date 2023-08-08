@@ -56,8 +56,7 @@ const Login = () => {
         setPasswordError('Password should be at least 8 characters long.');
       } else {
         setPasswordError('');
-      }
-     }
+      }}
     }, [email,password,isTouchedEmail,isTouchedPassword]);
 
   return (
