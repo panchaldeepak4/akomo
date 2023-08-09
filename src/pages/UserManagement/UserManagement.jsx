@@ -22,6 +22,7 @@ const UserManagement = () => {
     setShowEditUserModal(true);
     setEditingUserData(userData);
   }
+ //////////////////////////////////////////////////////////////
   
  const [currentPage, setCurrentPage] = useState(1);
 
@@ -104,7 +105,7 @@ const UserManagement = () => {
         { title: 'Email Id', dataIndex: 'column3', key: 'column3' },
         { title: 'Public Post', dataIndex: 'column4', key: 'column4' },
         { title: 'Private Post', dataIndex: 'column5', key: 'column5' },
-        { title: 'Actions', dataIndex: 'column6', key: 'column6' },
+        { title: <div style={{ textAlign: 'center' }}>Actions</div>, dataIndex: 'column6', key: 'column6' },
         { title: 'Status', dataIndex: 'column7', key: 'column7' },
         
       ];

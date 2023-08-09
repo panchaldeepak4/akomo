@@ -15,6 +15,8 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState('');
     const [isTouchedEmail, setIsTouchedEmail] = useState(false);
     const [isTouchedPassword, setIsTouchedPassword] = useState(false);
+
+    const [passwordErrorType, setPasswordErrorType] = useState('');
   
     let data = JSON.stringify({
       "email": email,
@@ -26,7 +28,8 @@ const Login = () => {
       if (!email.trim() || !password.trim()) {
         setEmailError(!email.trim() ? 'Please enter your email.' : '');
         setPasswordError(!password.trim() ? 'Please enter your password.' : '');
-        return; // Return early to avoid making the API call
+        setPasswordErrorType('blank');
+        //return; // Return early to avoid making the API call
       }else if(!emailError && !passwordError){
        
      await publicRequest.post("/admin/auth/login", data)
@@ -45,18 +48,28 @@ const Login = () => {
 
     useEffect(() => {
       if (isTouchedEmail) {
-      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+        if (!email.trim()) {
+          setEmailError('Please enter your email.');
+        }else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
         setEmailError('Invalid email address');
       } else {
         setEmailError('');
       }}
       
-       else if(isTouchedPassword){
-      if (!/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$/.test(password)) {
+       if(isTouchedPassword){
+        if (!password.trim()) {
+          setPasswordError('Please enter your password.');
+          setPasswordErrorType('blank');
+        }else if (!/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$/.test(password)) {
         setPasswordError('Password should be at least 8 characters long.');
+        setPasswordErrorType('invalid');
       } else {
         setPasswordError('');
-      }}
+        setPasswordErrorType('');
+      }}else{
+        setPasswordError('');
+        setPasswordErrorType('');
+      }
     }, [email,password,isTouchedEmail,isTouchedPassword]);
 
   return (
@@ -93,7 +106,8 @@ const Login = () => {
                 onChange={(e) => {setPassword(e.target.value);
                   setIsTouchedPassword(true); }}
               ></input>
-              {passwordError && <div className={styles.pass_error}>{passwordError}</div>}
+              {/* {passwordError && <div className={styles.pass_error}>{passwordError}</div>} */}
+              {passwordError && <div className={passwordErrorType === 'blank' ? styles.pass_blankerror : styles.pass_error}>{passwordError}</div>}
             </div>
             <p className={styles.forgot_p} onClick={()=>navigate('/forgotPassword')}>Forgot password?</p>
 

@@ -36,9 +36,9 @@
     font-size: 0.5rem;
 }
 .vm_txt{
-    /* margin-left: 1.5rem; */
+    margin-left: 0.75rem;
     font-size: 1.15rem;
-    font-weight: 700;
+    font-weight: 600;
     color: #00054F;
 }
 .header_bottom{
@@ -90,4 +90,33 @@
     border-top: 2rem solid #ffffff;
     border-left: 2rem solid #ffffff;
     border-right: 2rem solid #ffffff;
+}
+.footer{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    margin-left: 15rem;
+    gap: 6rem;
+}
+.userBtn{
+    display: flex;
+    gap: 1rem;
+}
+.userPrev{
+    font-size: 0.75rem;
+    padding: 0.55rem 1rem;
+    border-radius: 15px;
+    border: none;
+    background: white;
+}
+.userNext{
+    font-size: 0.75rem;
+    padding: 0.55rem 2rem;
+    border-radius: 15px;
+    border: none;
+    background: #77e38d;
+    color: white; 
+}
+.pagination{
+    margin-left: 14rem;
 }
