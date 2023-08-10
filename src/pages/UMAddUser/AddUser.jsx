@@ -91,7 +91,7 @@ const addUser = async (e) => {
   return (
     <>
      <div className={styles.addUser_right}>
-      <Search />                   {/* Search as component used here  */}
+      {/*<Search />                    Search as component used here  */}
       <div className={styles.header}>
         <div className={styles.header_left}>
         <p id={styles.header_t1}>User Management &gt; Add User</p>

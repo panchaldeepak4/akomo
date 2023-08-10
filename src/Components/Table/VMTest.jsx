@@ -1,10 +1,29 @@
 import React from 'react'
 import { Table, Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
+import { message } from 'antd';
+import { userRequest } from '../RequestMethod';
 
-const VMTest = ({vuser1}) => {
-   //console.log(vuser);
+const VMTest = ({vuser1,fetchVMData}) => {
+  //  console.log(vuser1);
+
+//////////////////////////////////////////////////////////////////
+
+   const deletePost = async (vuserData) => {
    
+    await userRequest.put('/admin/post/createOrUpdate',{postId:vuserData._id,userId:vuserData.userId._id,deleted:true})
+      .then(() => {
+        message.success("Post deleted successfully"); 
+        fetchVMData();
+      })
+      .catch((err) => {
+        const errorMessage = err.response?.data?.message || "An error occurred";
+        message.error(errorMessage);
+      });
+  };
+
+  //////////////////////////////////////////////////////////////////////////////
+
 const columns = [
 
     { title: 'Video Thumbnail', dataIndex: 'column1', key: 'column1' },
@@ -21,8 +40,10 @@ const columns = [
 
   
   const data = vuser1.length > 0 ? (
-    vuser1.map((vuserData) => ({
+    vuser1.map((vuserData) => {
     
+      const categoryName = vuserData?.categoryId?.categoryName || "N/A";
+    return {
     key: vuserData._id,
     column1: <div style={{width:"5rem"}}><img src={vuserData.url} alt='missing' width='30'></img></div>,
     column2: <div style={{width:"5rem",fontSize:"0.75rem"}}>{vuserData.userId.userName}</div>,
@@ -31,15 +52,17 @@ const columns = [
     column5: <div style={{width:"5rem",fontSize:"0.75rem"}}>{vuserData.description}</div>,
     column6: <div style={{width:"2.5rem",fontSize:"0.75rem"}}>{vuserData.location}</div>,
     
-    column7: <div style={{width:"3rem",fontSize:"0.75rem"}}>{vuserData.categoryId.categoryName}</div>,
+    column7: <div style={{width:"3rem",fontSize:"0.75rem"}}>
+      {categoryName}</div>,
     column8: <div style={{width:"2.5rem",fontSize:"0.75rem"}}>{vuserData.tags}</div>,
     column9: (<div style={{width:"9rem",display:"flex",gap:"0.45rem",lineHeight:"0.8rem",fontSize:"0.60rem"}}>
-    <Link to='/userManagement/videos' style={{color:"#000000",borderBottom:"1px solid black"}}>Watch</Link>
-    <Link to='/userManagement/uploadVideo' style={{color:"#000000",borderBottom:"1px solid black"}}>Delete</Link>
+    <Link to='' style={{color:"#000000",borderBottom:"1px solid black"}}>Watch</Link>
+    <Link to='' style={{color:"#000000",borderBottom:"1px solid black"}}
+    onClick={()=>deletePost(vuserData)}>Delete</Link>
     <Link to='' style={{color:"#77e38d",borderBottom:"1px solid #77e38d"}} >Download Video</Link>
     </div>),
-   
-  }))
+   }
+  })
 ) : (           // If 'user' is empty, return an empty array to avoid errors
   []
 );

@@ -13,17 +13,21 @@ import userIcon from "../../Assets/Images/john-doe.svg"
 const Search = ({searchText,handleSearch}) => {
   const[showProfile,setShowProfile] = useState(false);
  
-  
+
   const droppDown = ()=>{  
-    setShowProfile(true);
+    // setShowProfile(true);
+    setShowProfile((prevShowProfile) => !prevShowProfile);
   }
+
 
   return (
     <>
     <div className={styles.search_container}>
       <div className={styles.header_bar}>
                 <img src={search} alt='missing'></img>
+
                 <input type='text' placeholder='search' value={searchText} onChange={handleSearch} ></input>
+                
                 <img src={sort} alt='missing'></img>
             </div>
 

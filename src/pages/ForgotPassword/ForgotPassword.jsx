@@ -1,21 +1,45 @@
 import React,{useState,useEffect} from 'react'
 import styles from "../Home/styles.module.css";
 import { useNavigate } from 'react-router-dom';
+import { message } from "antd";
 
 
 const ForgotPassword = () => {
   const [email,setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [isTouchedEmail, setIsTouchedEmail] = useState(false);
 
   const navigate = useNavigate();
   const handleEmailChange = (e) => {
- 
     setEmail(e.target.value);
+    setIsTouchedEmail(true);
   }
+
+  const handleContinue =()=>{
+    if (!email) {
+      message.error("Please enter your registered email");
+      return; // Stop execution
+    }
+    if(!emailError){
+    navigate('/confirmPassword')
+    }
+  }
+
+  useEffect(() => {
+    if (isTouchedEmail) {
+      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+      setEmailError('Invalid email address');
+    } else {
+      setEmailError('');
+    }}
+  }, [email,isTouchedEmail]);
+
 
   useEffect(()=>{
     localStorage.setItem("email",email)
   },[email])
   
+
   return (
     <>
     <div className={styles.home_main}>
@@ -33,13 +57,14 @@ const ForgotPassword = () => {
         <input type='email'  className={styles.input1} placeholder='Email'
         value={email} onChange={(e)=>handleEmailChange(e)}></input>
         </div>
+        {emailError && <div className={styles.mail_error}>{emailError}</div>}
 
         {/* <input type='password' className={styles.input2} placeholder='Enter Password'></input> */}
         </div>
         {/* <p className={styles.forgot_p}>Forgot password?</p> */}
 
         <div className={styles.btn}>
-        <button  onClick={()=>navigate('/confirmPassword')}>Continue</button>
+        <button  onClick={handleContinue}>Continue</button>
         </div>
       </div>
 

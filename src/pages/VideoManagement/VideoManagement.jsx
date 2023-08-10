@@ -12,7 +12,7 @@ const VideoManagement = () => {
 
     const [vuser ,setVuser] = useState([]);
      //console.log(vuser)
-    const fetchData = async (searchQuery) => {
+    const fetchVMData = async (searchQuery) => {
       await userRequest.get('/admin/post/getAllPost?status&search=')
        .then((response) => {
          const result = response.data.data;
@@ -27,7 +27,7 @@ const VideoManagement = () => {
    };
  
    useEffect(()=>{
-      fetchData(" ")
+      fetchVMData(" ")
  },[]);
  //////////////////////////////////////////////////////////////////
  const [currentPage, setCurrentPage] = useState(1);
@@ -66,7 +66,7 @@ const VideoManagement = () => {
                 <p>Videos</p>
                 <div className={styles.white_body}>
                     <div className={styles.table}>
-                    <VMTest vuser1={vuser1}/>       {/* VMTest Table as component used here*/}
+                    <VMTest vuser1={vuser1} fetchVMData={fetchVMData}/>  {/* VMTest Table as component used here*/}
                     </div>   
                 </div>
             

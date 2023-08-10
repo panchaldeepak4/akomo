@@ -8,6 +8,7 @@ import CustomToggleSwitch from '../../Components/ToggleButton/CustomToggleSwitch
 import { userRequest } from '../../Components/RequestMethod'
 import { message } from "antd";
 import EditUserModal from '../../Components/EditUserModal/EditUserModal';
+import debounce from 'lodash.debounce';
 
 
 const UserManagement = () => {
@@ -22,7 +23,7 @@ const UserManagement = () => {
     setShowEditUserModal(true);
     setEditingUserData(userData);
   }
- //////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////applying pagination 
   
  const [currentPage, setCurrentPage] = useState(1);
 
@@ -33,15 +34,8 @@ const UserManagement = () => {
  const npage = user? Math.ceil(user.length/recordsPerPage): 0;
 
  
-  /////////////////////////////////////applying filter
-  const [searchText, setSearchText] = useState('');
+  ////////////////////////////////////////////applying get API with searchQuery
 
-  const handleSearch = (e) => {
-    setSearchText(e.target.value);
-    fetchData(e.target.value);
-    
-  };
-  //////////////////////////////////////////////////////////////
 
   const fetchData = async (searchQuery) => {
      //await userRequest.get("/admin/customer/getAllUsers?page=1&limit=5&search")
@@ -61,7 +55,22 @@ const UserManagement = () => {
   useEffect(()=>{
      fetchData(" ")
 },[]);
-///////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////applying search filter & debounce
+
+
+const [searchText, setSearchText] = useState('');
+
+
+const handleSearch = (e) => {
+  setSearchText(e.target.value);
+  // fetchData(e.target.value);        before debounce 
+  debouncedFetchData(searchText);      
+};
+const debouncedFetchData = debounce(fetchData, 3000);
+
+
+//////////////////////////////////////////////////////////////defining table 
 
  const navigate = useNavigate();
 
@@ -139,7 +148,9 @@ const UserManagement = () => {
     <>
       
         <div className={styles.um_right}>
-            <Search searchText={searchText} handleSearch={handleSearch} />
+
+            <Search searchText={searchText} handleSearch={handleSearch} />  {/* Search as component used here*/}
+            
             <div className={styles.header}>
                 <p id={styles.um_text}>User Management</p>
                 <div className={styles.btn}>
@@ -152,9 +163,11 @@ const UserManagement = () => {
             <div className={styles.form_main}>
             <div className={styles.form_body}> 
             <div className={styles.tab}>
-            <Table columns={columns} dataSource={data} pagination={false}/>
+
+            <Table columns={columns} dataSource={data} pagination={false}/> {/* Table defined above used here*/}
             {showEditUserModal && <EditUserModal setShowEditUserModal={setShowEditUserModal}
             editingUserData={editingUserData} fetchData={fetchData}/>}
+
             </div>
             </div>
 

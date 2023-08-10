@@ -7,7 +7,8 @@
 
 .addUser_right{
     position: fixed;
-    top: 8%;
+    /* top: 8%; */
+    top: 0.1%;
     left: 18%;
     z-index: 1;
     width: 82%;
@@ -20,8 +21,9 @@
 .header{
     width: 100%;
     height: 15%;
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     background: #F6F6F6;
+    /* background: red; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,8 +63,9 @@
 }
 .form_main{
     width: 100%;
-    height: 70vh;
+    height: 73vh;
     background: #F6F6F6;
+    /* background: green; */
 }
 .form_body{
     width: 97%;
@@ -70,6 +73,7 @@
     height: 60%;
     background: #ffffff;
     margin-left: 1rem;
+    
     border-radius: 8px;
     /* margin-right: 1rem; */
 }

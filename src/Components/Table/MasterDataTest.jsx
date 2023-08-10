@@ -36,7 +36,7 @@ const deleteCategory = async (userData) => {
     });
 };
 
- 
+
   ////////////////////////////////////////////////////////////////////////////////////////
 
 const [selectedRows, setSelectedRows] = useState([]);

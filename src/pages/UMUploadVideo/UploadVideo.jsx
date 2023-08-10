@@ -17,7 +17,7 @@ const UploadVideo = () => {
   const [place ,setPlace] = useState('');
   const [category,setCategory] = useState('');
   const [tag,setTag] = useState('');
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null);   //for radio button
   //console.log(category)
 
   let data = JSON.stringify({
@@ -32,6 +32,15 @@ const UploadVideo = () => {
   })
   
   const publish = async(e) =>{
+    if (!category) {
+      message.error("Please select a category before publishing.");
+      return; // Stop execution
+    }
+    if (!thumbnailURL) {
+      message.error("Please upload a thumbnail before publishing.");
+      return; // Stop execution
+    }
+
     await userRequest.post("/admin/post/createOrUpdate",data)
     .then(()=>{
       message.success("Data published successfully");
@@ -42,10 +51,12 @@ const UploadVideo = () => {
       message.error(errorMessage);
     });
   }
-  ///////////////////////////////////////////////////////////////To fetch category Id
+
+  ///////////////////////////////////////////////////////////////Only to fetch category Id
   const [user,setUser] = useState('');
 
   const fetchData = async () => {
+    
     await userRequest.get("/api/category/getAllCategory?page=1&limit=10&search")
       .then((response) => {
         const result = response.data.data;
@@ -67,7 +78,7 @@ const UploadVideo = () => {
   return (
     <>
      <div className={styles.uploadVideo_right}>
-      <Search />                                      {/* Search as component used here  */}
+      {/*<Search />                                       Search as component used here  */}
       <div className={styles.header}>
               <div className={styles.header_left}>
               <div className={styles.profPic}>
